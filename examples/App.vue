@@ -22,10 +22,10 @@
       </div>
       <br />
       <div>
-        <a style="font-size:14px;" href="#help1">1.如何创建自定义消息？</a>
+        <a style="font-size: 14px" href="#help1">1.如何创建自定义消息？</a>
       </div>
       <div>
-        <a style="font-size:14px;" href="#help2">2.如何对接后端接口？</a>
+        <a style="font-size: 14px" href="#help2">2.如何对接后端接口？</a>
       </div>
     </div>
     <div class="imui-center">
@@ -39,6 +39,17 @@
         :hide-menu-avatar="hideMenuAvatar"
         :hide-message-name="hideMessageName"
         :hide-message-time="hideMessageTime"
+        :quick-replies="[
+          { name: '12312' },
+          { name: '345' },
+          { name: '345' },
+          { name: '345' },
+          { name: '345' },
+          { name: '345' },
+          { name: '345' },
+          { name: '345' },
+          { name: '345' },
+        ]"
         @change-menu="handleChangeMenu"
         @change-contact="handleChangeContact"
         @pull-messages="handlePullMessages"
@@ -46,6 +57,10 @@
         @menu-avatar-click="handleMenuAvatarClick"
         @send="handleSend"
       >
+        <template v-slot:quick-replie-item="item">
+          <span>{{ item }} </span>
+          123213
+        </template>
         <template #cover>
           <div class="cover">
             <i class="lemon-icon-message"></i>
@@ -64,7 +79,7 @@
       </lemon-imui>
       <a
         target="_blank"
-        style="font-size:14px"
+        style="font-size: 14px"
         href="https://codesandbox.io/s/sweet-chaplygin-s24mb?fontsize=14&hidenavigation=1&theme=dark"
         >在线编辑代码</a
       >
@@ -92,7 +107,7 @@
       </div>
     </div>
 
-    <div style="display:flex;">
+    <!-- <div style="display:flex;">
       <div>
         <div class="title">自定义</div>
         <div class="imui-center"><qq-imui>12312312</qq-imui></div>
@@ -120,7 +135,7 @@
           >
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -137,14 +152,10 @@ const getTime = () => {
   return new Date().getTime();
 };
 const generateRandId = () => {
-  return Math.random()
-    .toString(36)
-    .substr(-8);
+  return Math.random().toString(36).substr(-8);
 };
 const generateRandWord = () => {
-  return Math.random()
-    .toString(36)
-    .substr(2);
+  return Math.random().toString(36).substr(2);
 };
 const generateMessage = (toContactId = "", fromUser) => {
   if (!fromUser) {
@@ -193,7 +204,8 @@ export default {
         },
         {
           icon: "lemon-icon-message",
-          render: (h, instance, hide) => {
+          // h, instance, hide
+          render: () => {
             return (
               <div style="display:flex;justify-content:space-between;align-items:center;width:130px">
                 <span>加入黑名单</span>
@@ -340,16 +352,16 @@ export default {
       lastSendTime: 3,
       lastContent: "你好123",
     };
-    const contactData4 = {
-      id: "contact-4",
-      displayName: "如花",
-      avatar:
-        "https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4275424924,2201401076&fm=111&gp=0.jpg",
-      index: "",
-      unread: 1,
-      lastSendTime: 3,
-      lastContent: "吃饭了嘛",
-    };
+    // const contactData4 = {
+    //   id: "contact-4",
+    //   displayName: "如花",
+    //   avatar:
+    //     "https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4275424924,2201401076&fm=111&gp=0.jpg",
+    //   index: "",
+    //   unread: 1,
+    //   lastSendTime: 3,
+    //   lastContent: "吃饭了嘛",
+    // };
 
     const { IMUI } = this.$refs;
     setTimeout(() => {
@@ -475,11 +487,11 @@ export default {
       return <span>[语音]</span>;
     });
 
-    const { SimpleIMUI } = this.$refs;
-    contactData1.id = "11";
-    SimpleIMUI.initContacts([contactData1]);
-    SimpleIMUI.initEmoji(EmojiData);
-    SimpleIMUI.changeContact(contactData1.id);
+    // const { SimpleIMUI } = this.$refs;
+    // contactData1.id = "11";
+    // SimpleIMUI.initContacts([contactData1]);
+    // SimpleIMUI.initEmoji(EmojiData);
+    // SimpleIMUI.changeContact(contactData1.id);
   },
   methods: {
     changeTheme() {

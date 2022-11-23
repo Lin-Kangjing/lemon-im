@@ -93,6 +93,13 @@ export default {
         return {};
       },
     },
+    // lkj修改
+    quickReplies: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
   },
   data() {
     this.CacheContactContainer = new MemoryCache();
@@ -491,7 +498,14 @@ export default {
           </div>,
         );
       }
-
+      console.log(
+        this.$scopedSlots["quick-replie-item"]({
+          props: {
+            "v-slot": "item",
+          },
+          slot: "default",
+        }),
+      );
       nodes.push(
         <div
           class={cls}
@@ -519,7 +533,14 @@ export default {
                 on-reach-top={this._emitPullMessages}
                 messages={this.currentMessages}
               />
-              <lemon-quick-reply />
+              {this.quickReplies.length ? (
+                <lemon-quick-reply ref="quickReply" data={this.quickReplies}>
+                  {this.$scopedSlots["quick-replie-item"] ? (
+                    <div></div>
+                  ) : // <div scopedSlots={{item:(scope)=>(<div>{scope}</div>)}}></div>
+                  null}
+                </lemon-quick-reply>
+              ) : null}
               <lemon-editor
                 ref="editor"
                 tools={this.editorTools}
@@ -621,6 +642,7 @@ export default {
       });
     },
     emojiImageToName(str) {
+      // eslint-disable-next-line no-useless-escape
       return str.replace(/<img emoji-name=\"([^\"]*?)\" [^>]*>/gi, "[!$1]");
     },
     updateCurrentMessages() {
@@ -719,7 +741,8 @@ export default {
 
       if (!allMessages[contactId]) {
         this.updateCurrentMessages();
-        this._emitPullMessages(isEnd => {
+        // isEnd
+        this._emitPullMessages(() => {
           this.messageViewToBottom();
         });
       } else {
@@ -821,7 +844,8 @@ export default {
           title: "聊天",
           unread: 0,
           click: null,
-          render: menu => {
+          // menu
+          render: () => {
             return <i class="lemon-icon-message" />;
           },
           isBottom: false,
@@ -831,7 +855,8 @@ export default {
           title: "通讯录",
           unread: 0,
           click: null,
-          render: menu => {
+          // menu
+          render: () => {
             return <i class="lemon-icon-addressbook" />;
           },
           isBottom: false,

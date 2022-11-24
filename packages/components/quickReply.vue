@@ -11,8 +11,8 @@
             :key="idx"
             class="scrollView__item slide-in-right-item"
           >
-            <slot v-bind:item="item">
-              <button class="scrollView__reply-btn" type="button" >
+            <slot name="item" v-bind:item="item">
+              <button class="scrollView__reply-btn" type="button">
                 <span> {{ item.name }}</span>
               </button>
             </slot>

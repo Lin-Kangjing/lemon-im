@@ -498,14 +498,6 @@ export default {
           </div>,
         );
       }
-      console.log(
-        this.$scopedSlots["quick-replie-item"]({
-          props: {
-            "v-slot": "item",
-          },
-          slot: "default",
-        }),
-      );
       nodes.push(
         <div
           class={cls}
@@ -534,12 +526,18 @@ export default {
                 messages={this.currentMessages}
               />
               {this.quickReplies.length ? (
-                <lemon-quick-reply ref="quickReply" data={this.quickReplies}>
-                  {this.$scopedSlots["quick-replie-item"] ? (
-                    <div></div>
-                  ) : // <div scopedSlots={{item:(scope)=>(<div>{scope}</div>)}}></div>
-                  null}
-                </lemon-quick-reply>
+                <lemon-quick-reply
+                  ref="quickReply"
+                  data={this.quickReplies}
+                  {...{
+                    scopedSlots: {
+                      item: this.$scopedSlots["quick-reply-item"]
+                        ? ({ item }) =>
+                            this.$scopedSlots["quick-reply-item"](item)
+                        : null,
+                    },
+                  }}
+                ></lemon-quick-reply>
               ) : null}
               <lemon-editor
                 ref="editor"

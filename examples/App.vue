@@ -57,10 +57,9 @@
         @menu-avatar-click="handleMenuAvatarClick"
         @send="handleSend"
       >
-        <template v-slot:quick-replie-item="item">
+        <!-- <template #quick-reply-item="item">
           <span>{{ item }} </span>
-          123213
-        </template>
+        </template> -->
         <template #cover>
           <div class="cover">
             <i class="lemon-icon-message"></i>

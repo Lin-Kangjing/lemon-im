@@ -1,30 +1,30 @@
 /*
  * @Description:
- * @FilePath: \lemon-im\packages\index.js
+ * @FilePath: \DTOCS\src\components\LemonIMUI\index.js
  * @Date: 2022-11-22 10:27:37
  * @LastEditors: Lin_kangjing
- * @LastEditTime: 2022-11-22 11:36:58
+ * @LastEditTime: 2022-11-24 10:57:40
  * @author: Lin_kangjing
  */
-import Contextmenu from "./directives/contextmenu";
-import LemonTabs from "./components/tabs";
-import LemonPopover from "./components/popover";
-import LemonButton from "./components/button";
-import LemonBadge from "./components/badge";
-import LemonAvatar from "./components/avatar";
-import LemonContact from "./components/contact";
-import LemonQuickReply from "./components/quickReply";
-import LemonEditor from "./components/editor";
-import LemonMessages from "./components/messages";
-import LemonMessageBasic from "./components/message/basic";
-import LemonMessageText from "./components/message/text";
-import lemonMessageImage from "./components/message/image";
-import lemonMessageFile from "./components/message/file";
-import lemonMessageEvent from "./components/message/event";
+import Contextmenu from './directives/contextmenu'
+import LemonTabs from './components/tabs'
+import LemonPopover from './components/popover'
+import LemonButton from './components/button'
+import LemonBadge from './components/badge'
+import LemonAvatar from './components/avatar'
+import LemonContact from './components/contact'
+import LemonQuickReply from './components/quickReply'
+import LemonEditor from './components/editor'
+import LemonMessages from './components/messages'
+import LemonMessageBasic from './components/message/basic'
+import LemonMessageText from './components/message/text'
+import lemonMessageImage from './components/message/image'
+import lemonMessageFile from './components/message/file'
+import lemonMessageEvent from './components/message/event'
 
-import LemonIMUI from "./components/index";
-import "./styles/common/index.styl";
-const version = "1.4.2";
+import LemonIMUI from './components/index'
+import './styles/common/index.styl'
+const version = '1.4.2'
 const components = [
   LemonIMUI,
   LemonContact,
@@ -40,20 +40,20 @@ const components = [
   LemonMessageText,
   lemonMessageImage,
   lemonMessageFile,
-  lemonMessageEvent,
-];
-const install = Vue => {
-  Vue.directive("LemonContextmenu", Contextmenu);
-  components.forEach(component => {
-    Vue.component(component.name, component);
-  });
-};
+  lemonMessageEvent
+]
+const install = (Vue) => {
+  Vue.directive('LemonContextmenu', Contextmenu)
+  components.forEach((component) => {
+    Vue.component(component.name, component)
+  })
+}
 
-if (typeof window !== "undefined" && window.Vue) {
-  install(window.Vue);
+if (typeof window !== 'undefined' && window.Vue) {
+  install(window.Vue)
 }
 
 export default {
   version,
-  install,
-};
+  install
+}
